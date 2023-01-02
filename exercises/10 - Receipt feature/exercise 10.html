@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 10</title>
+  </head>
+  <body>
+    <div id="receipt"></div>
+    <script>
+      const cartArray = [];
+      let totalPrice = 0;
+
+      function cartTotal(cartArray) {
+        cartArray.forEach((object) => {
+          totalPrice = totalPrice + object.price * object.quantity;
+        });
+        console.log(totalPrice);
+      }
+
+      function displayReceipt(cartArray) {
+        receipt = document.getElementById("receipt");
+        receipt.innerHTML = "";
+        cartArray.forEach((object) => {
+          line = document.createElement("div");
+          line.innerText =
+            object.name +
+            " $" +
+            object.price +
+            " * " +
+            object.quantity +
+            " = $" +
+            object.price * object.quantity;
+          receipt.appendChild(line);
+        });
+
+        total = document.createElement("div");
+        cartTotal(cartArray);
+        total.innerText = "Cart total = $" + totalPrice;
+        receipt.appendChild(total);
+      }
+    </script>
+  </body>
+</html>
+
+<!-- Output:
+cart = [{
+  name: "Apple",
+  price: 4,
+  quantity: 2},
+           {
+  name: "Orange",
+  price: 3,
+  quantity: 3}]
+(2) [{…}, {…}]
+cartTotal(cart)
+17 -->

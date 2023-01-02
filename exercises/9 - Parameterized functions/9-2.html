@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 9</title>
+  </head>
+  <body>
+    <input type="text" id="textbox" />
+    <button onclick="convertToCm()">Convert to cm</button>
+    <button onclick="convertToIn()">Convert to inch</button>
+    <div id="result"></div>
+
+    <script>
+      const textbox = document.getElementById("textbox");
+      const result = document.getElementById("result");
+
+      function convertToCm() {
+        value = +textbox.value;
+        result.innerText = value * 2.54 + "cm";
+      }
+
+      function convertToIn() {
+        value = +textbox.value;
+        result.innerText = value / 2.54 + "in";
+      }
+    </script>
+  </body>
+</html>

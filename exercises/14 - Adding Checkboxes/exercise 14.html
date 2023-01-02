@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adding Checkboxes to ToDos</title>
+  </head>
+  <body>
+    <input id="todo-title" type="text" />
+    <input id="date-picker" type="date" />
+    <button onclick="addTodo()">Add Todo</button>
+
+    <div id="todo-list"></div>
+    <script>
+      /////////////////////
+      //  Model section  //
+      /////////////////////
+
+      // Array - list of values. type: object
+      let todos = [
+        {
+          id: "id1",
+          title: "Get groceries",
+          dueDate: "2022-12-13",
+        },
+        {
+          id: "id2",
+          title: "Wash car",
+          dueDate: "2022-12-13",
+        },
+        {
+          id: "id3",
+          title: "Make dinner",
+          dueDate: "2022-12-13",
+        },
+      ];
+      // We use methods like todos.push, todos.filter, etc. to manage our data.
+      // Also we have createTodo and DeleteTodo to manage data
+      function createTodo(title, dueDate) {
+        const id = "" + new Date().getTime(); // Convert to string to avoid TypeError at line 65.
+        todos.push({
+          id: id,
+          title: title,
+          dueDate: dueDate,
+        });
+      }
+
+      function removeTodo(idToDelete) {
+        todos = todos.filter((todo) => {
+          // If the ID of this todo matches idToDelete, return false
+          // For everything else, return true
+          if (todo.id === idToDelete) {
+            return false;
+          } else {
+            return true;
+          }
+        });
+      }
+
+      function changeIsDone(idOfTodo, isChecked) {
+        todos.forEach((todo) => {
+          if (todo.id === idOfTodo) {
+            todo.isDone = isChecked;
+          }
+        });
+      }
+
+      //////////////////
+      //  Controller  //
+      //////////////////
+
+      // Add a new Todo
+      function addTodo() {
+        // Add todo title entered in the textbox into the todos array
+        const textbox = document.getElementById("todo-title");
+        const title = textbox.value;
+
+        const datePicker = document.getElementById("date-picker");
+        const dueDate = datePicker.value;
+        createTodo(title, dueDate);
+        // display array in the todo-list element
+        render();
+      }
+
+      // Delete ToDo
+      function deleteTodo(event) {
+        const deleteButton = event.target;
+        const idToDelete = deleteButton.id;
+        removeTodo(idToDelete);
+        render();
+      }
+
+      function changeStatus(event) {
+        const checkbox = event.target;
+        const idOfTodo = checkbox.dataset.todoId;
+        changeIsDone(idOfTodo, checkbox.checked);
+        render();
+      }
+
+      ////////////
+      //  View  //
+      ////////////
+
+      // Render todos array on the DOM
+      function render() {
+        // reset our list
+        document.getElementById("todo-list").innerHTML = "";
+
+        // Append into the todo-list div from the array
+        todos.forEach(function (todo) {
+          const element = document.createElement("div");
+          element.innerText = todo.title + " " + todo.dueDate;
+
+          const deleteButton = document.createElement("button");
+          deleteButton.innerText = "Delete";
+          deleteButton.style = "margin-left: 12px";
+          deleteButton.id = todo.id; // Stores as a string
+          deleteButton.onclick = deleteTodo;
+          element.appendChild(deleteButton);
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.onchange = changeStatus; // onChange: useful with checkboxes
+          checkbox.dataset.todoId = todo.id; // Every element has a dataset?
+          if (todo.isDone === true) {
+            checkbox.checked = true;
+          } else {
+            checkbox.checked = false;
+          }
+          element.prepend(checkbox);
+
+          const todoList = document.getElementById("todo-list");
+          todoList.appendChild(element);
+        });
+      }
+
+      // Initial rendering
+      render();
+    </script>
+  </body>
+</html>

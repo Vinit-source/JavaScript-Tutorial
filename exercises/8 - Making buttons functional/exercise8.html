@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 8</title>
+  </head>
+  <body>
+    <!-- 1 -->
+    <button id="todo-button" onclick="addText()"></button>
+
+    <!-- 2 -->
+    <div id="counter">0</div>
+    <button onclick="increaseCount()">Up</button>
+
+    <!-- 3 -->
+    <button onclick="decreaseCount()">Down</button>
+
+    <!-- 4 -->
+    <input type="text" id="div-text" />
+    <button onclick="addDiv()">Add Div</button>
+    <script>
+      // 1
+      function addText() {
+        let button = document.getElementById("todo-button");
+        button.innerText = "Done";
+      }
+
+      // 2
+      let count = 0;
+      function increaseCount() {
+        count = count + 1;
+        counter = document.getElementById("counter");
+        counter.innerText = count;
+      }
+
+      // 3
+      function decreaseCount() {
+        count = count - 1;
+        counter = document.getElementById("counter");
+        counter.innerText = count;
+      }
+
+      //   4
+      function addDiv() {
+        let textbox = document.getElementById("div-text");
+        text = textbox.value;
+        let element = document.createElement("div");
+        element.innerText = text;
+        document.body.appendChild(element);
+      }
+    </script>
+  </body>
+</html>

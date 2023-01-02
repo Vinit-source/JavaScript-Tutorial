@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 11</title>
+  </head>
+  <body>
+    <div id="receipt"></div>
+    <script>
+      //   const cartArray = [];
+      let total = 0;
+
+      //   Calculate cart total
+      function cartTotal(cartArray) {
+        cartArray.forEach((object) => {
+          total = total + object.price * object.quantity;
+        });
+        console.log(total);
+      }
+
+      //   Display the receipt containing objects, their prices and their quantity. Display total at the end by calling cartTotal function.
+      function displayReceipt(cartArray) {
+        receipt = document.getElementById("receipt");
+        receipt.innerHTML = "";
+        cartArray.forEach((object) => {
+          line = document.createElement("div");
+          line.innerText =
+            object.name +
+            " $" +
+            object.price +
+            " * " +
+            object.quantity +
+            " = $" +
+            object.price * object.quantity;
+          receipt.appendChild(line);
+        });
+
+        totalPrice = document.createElement("div");
+        cartTotal(cartArray);
+        totalPrice.innerText = "Cart total = $" + total;
+        receipt.appendChild(totalPrice);
+      }
+
+      //   Add price to total when Add button for a food item is clicked
+      function addToTotal(event) {
+        button = event.target;
+        // console.log(button.previousSibling);
+        total = total + +button.previousSibling.innerText;
+      }
+
+      //   Render menu dynamically
+      function createCart(foodPrices) {
+        console.log(Object.keys(foodPrices));
+        foods = Object.keys(foodPrices);
+        foods.forEach((food) => {
+          // Parent div for a single food item
+          const foodDiv = document.createElement("div");
+          foodDiv.innerHTML = "";
+          foodDiv.style = "display:flex; gap: 20px;";
+
+          // Create and add food item name to foodDiv
+          const name = document.createElement("p");
+          name.innerText = food;
+          name.style = "min-width: 100px;";
+          foodDiv.appendChild(name);
+
+          // Create and add food item price to foodDiv
+          const price = document.createElement("p");
+          price.innerText = foodPrices[food];
+          price.style = "min-width: 50px;";
+          foodDiv.appendChild(price);
+
+          // Create and add Add button to foodDiv
+          const addButton = document.createElement("button");
+          addButton.innerText = "Add";
+          addButton.style = "min-width: 50px;";
+          addButton.onclick = addToTotal;
+          foodDiv.appendChild(addButton);
+
+          //   Append the foodDiv to body
+          document.body.appendChild(foodDiv);
+        });
+      }
+    </script>
+  </body>
+</html>
+
+<!-- Output:
+cart = [{
+  name: "Apple",
+  price: 4,
+  quantity: 2},
+           {
+  name: "Orange",
+  price: 3,
+  quantity: 3}]
+(2) [{…}, {…}]
+cartTotal(cart)
+17 -->

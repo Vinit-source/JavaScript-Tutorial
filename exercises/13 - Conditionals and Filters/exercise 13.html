@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 13</title>
+  </head>
+  <body>
+    <script>
+      // 1. Find the max number in an array
+      function max(array) {
+        max = -9999;
+        array = array.filter((num) => {
+          if (num > max) {
+            max = num;
+            return num;
+          } else {
+            return max;
+          }
+        });
+        return max;
+      }
+
+      // 1. Find the min number in an array
+      function minimum(array) {
+        min = Infinity;
+
+        array.forEach((num) => {
+          if (num < min) {
+            min = num;
+          }
+        });
+
+        return min;
+      }
+
+      // 1. Find the min natural number in an array
+      function smallestGreaterThanZero(numbers) {
+        min = Infinity;
+
+        numbers.forEach((num) => {
+          if (num >= 0) {
+            if (num < min) {
+              min = num;
+            }
+          }
+        });
+
+        return min;
+      }
+
+      // 2. Filter out first two apples from a fruitArray
+      function pickApples(fruitArray) {
+        count = 0;
+
+        fruitArray = fruitArray.filter((fruit) => {
+          if (count >= 2) {
+            return true;
+          } else if (fruit === "apple") {
+            count = count + 1;
+            return false;
+          } else {
+            return true;
+          }
+        });
+
+        return fruitArray;
+      }
+
+      // 2. Filter out first two apples and one orange from a fruitArray
+      function pickFruits(fruitArray) {
+        applesPicked = 0;
+        orangesPicked = 0;
+
+        fruitArray = fruitArray.filter((fruit) => {
+          if (fruit === "apple") {
+            if (applesPicked >= 2) {
+              return true;
+            } else {
+              applesPicked = applesPicked + 1;
+              return false;
+            }
+          } else if (fruit === "orange") {
+            if (orangesPicked >= 1) {
+              return true;
+            } else {
+              orangesPicked = orangesPicked + 1;
+              return false;
+            }
+          } else {
+            return true;
+          }
+        });
+        return fruitArray;
+      }
+
+      function pickLastApples(fruitArray) {
+        //  Reverse the array
+        reversedArray = fruitArray.reverse();
+
+        // Same code as pickApples
+        count = 0;
+
+        filteredArray = reversedArray.filter((fruit) => {
+          if (count >= 2) {
+            return true;
+          } else if (fruit === "apple") {
+            count = count + 1;
+            return false;
+          } else {
+            return true;
+          }
+        });
+
+        return fruitArray.reverse();
+      }
+    </script>
+  </body>
+</html>

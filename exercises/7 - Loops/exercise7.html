@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 7</title>
+  </head>
+  <body>
+    <script>
+      //   1
+      function toUpper(stringArray) {
+        // Array - list of values. type: object
+        outputArray = [];
+        stringArray.forEach((element) => {
+          outputArray.push(element.toUpperCase()); // Predefined by JS - attached to arrays. Also called as methods.
+        });
+        console.log(outputArray);
+      }
+
+      //   Output:
+      //   toUpper(["a", "b", "c"])
+      //   (3) ['A', 'B', 'C']
+
+      //   2
+      function arrayDouble(stringArray) {
+        outputArray = [];
+        stringArray.forEach((element) => {
+          outputArray.push(element);
+          outputArray.push(element);
+        });
+        console.log(outputArray);
+      }
+
+      //   Output:
+      //   arrayDouble(["a", "b", "c"])
+      //   (6) ['a', 'a', 'b', 'b', 'c', 'c']
+
+      //   3
+      function arraySum(numArray) {
+        let total = 0;
+        numArray.forEach((element) => {
+          total = total + element;
+        });
+        console.log(total);
+      }
+
+      // Output:
+      // arraySum([1, 2, 3])
+      // 6
+    </script>
+  </body>
+</html>

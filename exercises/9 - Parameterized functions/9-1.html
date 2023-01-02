@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 9</title>
+  </head>
+  <body>
+    <button onclick="add('Apple')">Apple</button>
+    <button onclick="add('Tomato')">Tomato</button>
+    <button onclick="add('Eggs')">Eggs</button>
+    <button onclick="clearCart()">Clear</button>
+    <div id="cart"></div>
+
+    <script>
+      function add(item) {
+        const cart = document.getElementById("cart");
+        element = document.createElement("div");
+        element.innerText = item;
+        cart.appendChild(element);
+      }
+
+      //   function name clear does not work. Maybe it is a keyword.
+      function clearCart() {
+        document.getElementById("cart").innerHTML = "";
+      }
+    </script>
+  </body>
+</html>
